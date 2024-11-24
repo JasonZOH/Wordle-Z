@@ -14,7 +14,10 @@ const Wordle = () => {
   return (
     <div>
       <h1>Wordle</h1>
-      <div>Current guess - {currentGuess}</div>
+      <div>
+        <div>Solution - {solution}</div>
+        <div>Current guess - {currentGuess}</div>
+      </div>
     </div>
   )
 }

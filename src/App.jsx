@@ -10,7 +10,7 @@ function App() {
   const fetchWordRandomData = async()=>{
     try{
       const response = await axios.get('/api?words=1&length=5');
-      dispatch(setWordRandomData(response.data));
+      dispatch(setWordRandomData(response.data[0]));
     }catch(error){
       console.log("error", error);
     };
