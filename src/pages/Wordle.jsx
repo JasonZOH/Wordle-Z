@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import useWordle from '../hooks/wordle/useWordle';
+import Grid from '../components/Grid';
 
 const Wordle = () => {
   const solution = useSelector((state) => state.wordData.wordRandomData);
@@ -22,6 +23,7 @@ const Wordle = () => {
       <div>
         <div>Solution - {solution}</div>
         <div>Current guess - {currentGuess}</div>
+        <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}/>
       </div>
     </div>
   )
