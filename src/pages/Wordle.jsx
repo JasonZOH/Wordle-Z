@@ -4,13 +4,18 @@ import useWordle from '../hooks/wordle/useWordle';
 
 const Wordle = () => {
   const solution = useSelector((state) => state.wordData.wordRandomData);
-  const { currentGuess, handleKeyUp } = useWordle(solution);
+  const { currentGuess, handleKeyUp, guesses, iscorrect, turn } = useWordle(solution);
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
 
     return () => window.removeEventListener("keyup", handleKeyUp);
-  }, [handleKeyUp])
+  }, [handleKeyUp]);
+
+  useEffect(() => {
+    console.log(guesses, turn , iscorrect);
+  }, [guesses, turn , iscorrect]);
+  
   return (
     <div>
       <h1>Wordle</h1>

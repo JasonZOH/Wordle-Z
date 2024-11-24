@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Wordle from "./components/Wordle";
+import Wordle from "./pages/Wordle";
 import { setWordRandomData } from "./redux/wordSlicer";
 
 
