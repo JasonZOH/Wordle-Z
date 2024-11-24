@@ -7,7 +7,7 @@ const Grid = ({currentGuesse, guesses, turn}) => {
       {
         guesses.map((g, index) => {
           return (
-            <Row key={index}/>
+            <Row key={index} guess={g}/>
           )
         })
       }
