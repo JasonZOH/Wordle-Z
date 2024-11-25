@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Wordle from "./pages/Wordle";
 import { setWordRandomData } from "./redux/wordSlicer";
+import { Outlet } from "react-router-dom";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   }, []);
   return (
     <main>
-      <Wordle />
+      <Outlet />
     </main>
   )
 }
