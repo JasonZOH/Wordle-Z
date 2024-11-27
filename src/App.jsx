@@ -9,7 +9,7 @@ function App() {
   const dispatch = useDispatch();
   const fetchWordRandomData = async()=>{
     try{
-      const response = await axios.get('/api?words=1&length=5');
+      const response = await axios.get('https://random-word-api.vercel.app/api?words=1&length=5');
       dispatch(setWordRandomData(response.data[0]));
     }catch(error){
       console.log("error", error);
