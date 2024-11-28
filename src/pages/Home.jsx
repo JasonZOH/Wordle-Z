@@ -5,15 +5,15 @@ import { NavLink } from 'react-router-dom'
 const Home = () => {
   return (
     <div>
-      <div className='text-2xl font-bold py-2 border-b-2'>
+      <div className='text-2xl font-bold py-2 border-b-2 text-red-700'>
         Home
       </div>
 
-      <div className='grid grid-cols-[repeat(auto-fit, _minmax(100px,_1fr))] gap-6'>
+      <div className='flex items-center'>
         {
           game.map((data, index) => {
             return (
-              <div key={index} className='mx-auto'>
+              <div key={index} className='mx-auto p-2 font-semibold'>
                 <NavLink
                   key={data.label}
                   to={data.href}
