@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { RiArrowGoBackFill } from "react-icons/ri";
-import { FaCircleUser } from "react-icons/fa6";
-import '../App.css';
+import './../css/Wordle.css';
 import { useSelector } from 'react-redux';
 import useWordle from '../hooks/wordle/useWordle';
-import Grid from '../components/Grid';
-import Keypad from '../components/Keypad';
-import Modal from '../components/Modal';
+import Grid from '../components/wordle/Grid';
+import Keypad from '../components/wordle/Keypad';
+import Modal from '../components/wordle/Modal';
 import { useNavigate } from 'react-router-dom';
+import HeaderGame from '../components/commun/HeaderGame';
 
 const Wordle = ({ col = 5, l = 5}) => {
   const solution = useSelector((state) => state.wordData.wordRandomData);
@@ -34,11 +33,7 @@ const Wordle = ({ col = 5, l = 5}) => {
   }, [handleKeyUp, iscorrect, turn]);
   return (
     <div>
-      <div className='flex items-center justify-between border-b-2 py-4 px-6 mb-10'>
-        <RiArrowGoBackFill className='scale-125 hover:scale-150 transition-all' onClick={() => navigate('/')}/>
-        <h1 className='text-xl font-bold'>Wordle</h1>
-        <FaCircleUser className='scale-150' />
-      </div>
+      <HeaderGame title={"Wordle"} />
       <div>
         <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}/>
         <Keypad usedKeys={usedKeys}/>
