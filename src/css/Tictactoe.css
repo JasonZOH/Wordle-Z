@@ -18,11 +18,43 @@
   color: rgb(255, 85, 55);
 }
 
+.xfill{
+  color: rgb(255, 85, 55);
+  animation: bounce 0.3s ease-in-out forwards;
+}
+
 .o {
   color: rgb(44, 127, 237);
+}
+
+.ofill{
+  color: rgb(44, 127, 237);
+  animation: bounce 0.3s ease-in-out forwards;
 }
 
 .box:hover {
   box-shadow: 0px 0px 15px #888;
   transform: scale(1.1);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 6rem);
+  place-items: center;
+  justify-content: center;
+}
+
+/* animation */
+@keyframes bounce {
+  0% {
+    transform: scale(1.2);
+    border-color: #ddd;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    border-color: #333;
+  }
 }

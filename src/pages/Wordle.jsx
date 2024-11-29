@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './../css/Wordle.css';
 import { useSelector } from 'react-redux';
-import useWordle from '../hooks/wordle/useWordle';
+import useWordle from '../hooks/useWordle';
 import Grid from '../components/wordle/Grid';
 import Keypad from '../components/wordle/Keypad';
 import Modal from '../components/wordle/Modal';

@@ -1,14 +1,16 @@
 import React from 'react'
 import HeaderGame from '../components/commun/HeaderGame'
-import Box from '../components/tictactoe/Box'
 import './../css/Tictactoe.css'
+import Board from '../components/tictactoe/Board'
+import useTictactoe from '../hooks/useTictactoe'
 
 const TicTacToe = () => {
+  const { board, handleBoxClick} = useTictactoe();
   return (
-    <div>
+    <div className='h-screen'>
       <HeaderGame title={"Tic-Tac-Toe"} />
       <div>
-        <Box value={'X'} onClick={null}/>
+        <Board board={board} onClick={handleBoxClick}/>
       </div>
     </div>
   )
