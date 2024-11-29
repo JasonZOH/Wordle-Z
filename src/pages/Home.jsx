@@ -4,23 +4,28 @@ import { NavLink } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div>
-      <div className='text-2xl font-bold py-2 border-b-2 text-red-700'>
+    <div className='h-screen'>
+      <div className='text-2xl font-bold py-2 border-b-2 border-neutral-700 text-red-700'>
         Home
       </div>
 
-      <div className='flex items-center'>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {
           game.map((data, index) => {
             return (
-              <div key={index} className='mx-auto p-2 font-semibold'>
-                <NavLink
-                  key={data.label}
-                  to={data.href}
-                >
+              <NavLink 
+                key={index}
+                to={data.href}
+                className="rounded-lg p-4 text-center hover:scale-110 transition-all">
+                <img 
+                  src={data.image} 
+                  alt={data.label} 
+                  className="rounded-lg object-cover"
+                />
+                <div className="mt-3 font-semibold text-white">
                   {data.label}
-                </NavLink>
-              </div>
+                </div>
+              </NavLink>
             )
           })
         }
