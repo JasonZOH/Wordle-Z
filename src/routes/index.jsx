@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Wordle from "../pages/Wordle";
 import Home from "../pages/Home";
+import TicTacToe from "../pages/TicTacToe";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "wordle",
         element: <Wordle/>
+      },
+      {
+        path: "tictactoe",
+        element: <TicTacToe/>
       },
     ]
   }

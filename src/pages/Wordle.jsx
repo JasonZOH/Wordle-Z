@@ -9,9 +9,11 @@ import Keypad from '../components/Keypad';
 import Modal from '../components/Modal';
 import { useNavigate } from 'react-router-dom';
 
-const Wordle = () => {
+const Wordle = ({ col = 5, l = 5}) => {
   const solution = useSelector((state) => state.wordData.wordRandomData);
-  const { currentGuess, handleKeyUp, guesses, iscorrect, turn, usedKeys } = useWordle(solution);
+  const  [column, setColumn] = useState(col);
+  const  [line, setLine] = useState(l);
+  const { currentGuess, handleKeyUp, guesses, iscorrect, turn, usedKeys } = useWordle(solution, col, line);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 
-const useWordle = (solution) => {
+const useWordle = (solution, col, line) => {
   const [turn , setTurn] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [isNotInList, setIsNotInList] = useState(false);
@@ -81,7 +81,7 @@ const useWordle = (solution) => {
   const handleKeyUp = ({ key}) => {
 
     if(key === 'Enter'){
-      if(turn > 5){
+      if(turn > line){
         console.log('You use all your guesses');
         return;
       }
@@ -91,7 +91,7 @@ const useWordle = (solution) => {
         return;
       }
 
-      if(currentGuess.length !== 5){
+      if(currentGuess.length !== col){
         console.log("Word must be 5 chars long");
         return;
       }
