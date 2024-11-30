@@ -16,6 +16,7 @@ const useTictactoe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xPlaying, setXPlaying] = useState(true);
   const [scores, setScores] = useState({xScore:0, oScore:0});
+  const [gameOver, setGameOver] = useState(false);
 
   const handleBoxClick = (boxIndx) => {
     const updateBoard = board.map((value, index) => {
@@ -25,7 +26,6 @@ const useTictactoe = () => {
     })
 
     const winner = VerifyWinner(updateBoard);
-    console.log(winner);
     if(winner){
       if(winner === "O"){
         let {oScore} = scores;
@@ -38,7 +38,6 @@ const useTictactoe = () => {
       }
     }
 
-    console.log(scores);
     setXPlaying(!xPlaying);
     setBoard(updateBoard);
   }
@@ -47,13 +46,19 @@ const useTictactoe = () => {
     for (const win of WIN_OF_PLAYER) {
       const [x, y, z] = win;
       if (board[x] && board[x] === board[y] && board[y] === board[z]) {
+        setGameOver(true);
         return board[x];
       }
     }
     return null;
   };
 
-  return {board, handleBoxClick }
+  const resetBoard = () => {
+    setGameOver(false);
+    setBoard(Array(9).fill(null));
+  }
+
+  return {board, handleBoxClick, scores, xPlaying, resetBoard, gameOver }
 }
 
 export default useTictactoe

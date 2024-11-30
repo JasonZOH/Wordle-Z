@@ -7,10 +7,10 @@ const Board = ({ board, onClick }) => {
       {
         board.map((value, index) => {
           if(value){
-            <Box key={index} value={value} onClick={() => value === null && onClick(index)}/>
+            return <Box key={index} value={value} onClick={null}/>
           }
           return (
-            <Box key={index} value={value} onClick={() => value === null && onClick(index)}/>
+            <Box key={index} value={value} onClick={() => onClick(index)}/>
           )
         })
       }

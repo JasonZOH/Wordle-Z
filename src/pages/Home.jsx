@@ -16,7 +16,7 @@ const Home = () => {
               <NavLink 
                 key={index}
                 to={data.href}
-                className="rounded-lg p-4 text-center hover:scale-110 transition-all shadow-lg">
+                className="rounded-lg p-4 flex flex-col hover:scale-110 transition-all shadow-lg">
                 <img 
                   src={data.image} 
                   alt={data.label} 
