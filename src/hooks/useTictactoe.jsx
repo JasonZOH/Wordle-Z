@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-const useTictactoe = () => {
+const useTictactoe = (nbWinAt) => {
 
   const WIN_OF_PLAYER = [
     [0,1,2],
@@ -17,6 +17,7 @@ const useTictactoe = () => {
   const [xPlaying, setXPlaying] = useState(true);
   const [scores, setScores] = useState({xScore:0, oScore:0});
   const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(null);
 
   const handleBoxClick = (boxIndx) => {
     const updateBoard = board.map((value, index) => {
@@ -27,15 +28,8 @@ const useTictactoe = () => {
 
     const winner = VerifyWinner(updateBoard);
     if(winner){
-      if(winner === "O"){
-        let {oScore} = scores;
-        oScore += 1;
-        setScores({...scores, oScore});
-      }else{
-        let {xScore} = scores;
-        xScore += 1;
-        setScores({...scores, xScore});
-      }
+      updateScores(winner);
+      setGameOver(true);
     }
 
     setXPlaying(!xPlaying);
@@ -53,12 +47,38 @@ const useTictactoe = () => {
     return null;
   };
 
+  const updateScores = (winner) => {
+    if (winner === 'X') {
+      setScores((prevScores) => ({
+        ...prevScores,
+        xScore: prevScores.xScore + 1,
+      }));
+    } else if (winner === 'O') {
+      setScores((prevScores) => ({
+        ...prevScores,
+        oScore: prevScores.oScore + 1,
+      }));
+    }
+  };
+
   const resetBoard = () => {
     setGameOver(false);
     setBoard(Array(9).fill(null));
   }
 
-  return {board, handleBoxClick, scores, xPlaying, resetBoard, gameOver }
+  useEffect(() => {
+    const { xScore, oScore } = scores;
+
+    if (xScore >= nbWinAt) {
+      setWin('X');
+    } else if (oScore >= nbWinAt) {
+      setWin('O');
+    } else {
+      setWin(null); // Reset win if no one has reached the target
+    }
+  }, [scores, nbWinAt]);
+
+  return {board, handleBoxClick, scores, xPlaying, resetBoard, gameOver, win }
 }
 
 export default useTictactoe

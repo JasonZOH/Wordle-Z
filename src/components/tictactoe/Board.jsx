@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from './Box'
 
-const Board = ({ board, onClick }) => {
+const Board = ({ board, onClick, gameOver }) => {
   return (
     <div className='board'>
       {
@@ -10,7 +10,7 @@ const Board = ({ board, onClick }) => {
             return <Box key={index} value={value} onClick={null}/>
           }
           return (
-            <Box key={index} value={value} onClick={() => onClick(index)}/>
+            <Box key={index} value={value} onClick={() => gameOver ? null : onClick(index)}/>
           )
         })
       }
