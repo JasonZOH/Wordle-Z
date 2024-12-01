@@ -10,10 +10,10 @@ export const wordSlice = createSlice({
   reducers: {
     setWordRandomData : (state, action) =>{
       state.wordRandomData = action.payload;
-    },
+    }
   }
 })
 
-export const { setWordRandomData } = wordSlice.actions;
+export const { setWordRandomData, setLengthWord } = wordSlice.actions;
 
 export default wordSlice.reducer;

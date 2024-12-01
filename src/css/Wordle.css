@@ -124,6 +124,29 @@ body {
   letter-spacing: 1px;
 }
 
+.box-shadow-container {
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.input-field {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  width: 80px;
+}
+
+.input-field:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 /* animation */
 @keyframes flip {
   0% {

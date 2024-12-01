@@ -1,14 +1,35 @@
+import React, { useEffect, useState } from 'react'
+import { setWordRandomData } from '../redux/wordSlicer';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import React, { useState } from 'react'
 
 const useWordle = (solution, col, line) => {
   const [turn , setTurn] = useState(0);
+  const dispatch = useDispatch();
   const [currentGuess, setCurrentGuess] = useState("");
-  const [isNotInList, setIsNotInList] = useState(false);
-  const [guesses, setGuesses] = useState([...Array(6)]); //array
+  const [guesses, setGuesses] = useState([...Array(line)]); //array
   const [history, setHistory] = useState([]); //string
   const [iscorrect, setIsCorrect] = useState(false);
   const [usedKeys, setUsedKeys] = useState({});
+
+  useEffect(() => {
+    setGuesses([...Array(line)]);
+    setCurrentGuess("");
+    setTurn(0);
+    setHistory([]);
+    setIsCorrect(false);
+    setUsedKeys({});
+  }, [col, line]);
+
+  const fetchWordRandomData = async(length) =>{
+    try{
+      const response = await axios.get(`https://random-word-api.vercel.app/api?words=1&length=${length}`);
+      console.log(response.data[0]);
+      dispatch(setWordRandomData(response.data[0]));
+    }catch(error){
+      console.log("error", error);
+    };
+  }
 
   const formatGuess = () => {
     const solutionArray = [...solution];
@@ -107,7 +128,7 @@ const useWordle = (solution, col, line) => {
     }
 
     if (/^[aA-Za-z]$/.test(key)){
-      if(currentGuess.length < 5){
+      if(currentGuess.length < col){
         setCurrentGuess((prev) => {
           return prev + key;
         })
@@ -116,7 +137,7 @@ const useWordle = (solution, col, line) => {
   }
 
 
-  return {turn , currentGuess, guesses, iscorrect, handleKeyUp, usedKeys}
+  return {turn , currentGuess, guesses, iscorrect, handleKeyUp, usedKeys, fetchWordRandomData}
 }
 
 export default useWordle
