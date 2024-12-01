@@ -12,10 +12,16 @@ const Modal = ({ win }) => {
   return (
     <div className='modal'>
       <div>
-        {win && (
+        {win != 'Draw' ? (
           <div>
             <h1>The Winner !</h1>
             <p className={`win ${win}`}>{win}</p>
+          </div>
+        ):
+        (
+          <div>
+            <h1>Nobody Win !</h1>
+            <p className={`win`}>{win}</p>
           </div>
         )}
         <div className='flex items-center justify-around mt-2'>

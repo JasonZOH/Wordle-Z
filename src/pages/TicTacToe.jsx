@@ -5,11 +5,12 @@ import Board from '../components/tictactoe/Board'
 import useTictactoe from '../hooks/useTictactoe'
 import ScoreBoard from '../components/tictactoe/ScoreBoard'
 import Modal from '../components/tictactoe/Modal'
+import GiveUp from '../components/tictactoe/GiveUp'
 
 const TicTacToe = () => {
   const [isDefined, setIsDefined] = useState(false);
   const [nbWinAt, setNbWinAt] = useState(1);
-  const { board, handleBoxClick, scores, xPlaying, resetBoard, gameOver, win} = useTictactoe(nbWinAt);
+  const { board, handleBoxClick, scores, xPlaying, resetBoard, gameOver, win , giveUpWinner} = useTictactoe(nbWinAt);
 
   useEffect(() => {
     if(board.find((val) => val != null)){
@@ -59,6 +60,7 @@ const TicTacToe = () => {
         </div>
         <ScoreBoard scores={scores} xPlaying={xPlaying}/>
         <Board board={board} onClick={handleBoxClick} gameOver={gameOver}/>
+        <GiveUp onClick={giveUpWinner}/>
         {win && <Modal win={win} />}
       </div>
     </div>

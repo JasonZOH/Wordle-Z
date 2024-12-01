@@ -78,7 +78,21 @@ const useTictactoe = (nbWinAt) => {
     }
   }, [scores, nbWinAt]);
 
-  return {board, handleBoxClick, scores, xPlaying, resetBoard, gameOver, win }
+  const giveUpWinner = () => {
+    const {xScore, oScore} = scores;
+
+    if(xScore > oScore){
+      setWin('X');
+    }else{
+      if(oScore > xScore){
+        setWin('O');
+      }else{
+        setWin('Draw');
+      }
+    }
+  }
+
+  return {board, handleBoxClick, scores, xPlaying, resetBoard, gameOver, win, giveUpWinner }
 }
 
 export default useTictactoe
