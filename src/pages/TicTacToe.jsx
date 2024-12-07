@@ -13,7 +13,7 @@ const TicTacToe = () => {
   const { board, handleBoxClick, scores, xPlaying, resetBoard, gameOver, win , giveUpWinner} = useTictactoe(nbWinAt);
 
   useEffect(() => {
-    if(board.find((val) => val != null)){
+    if(board.find((val) => val != null || (scores.xScore !== 0 && scores.oScore !== 0))){
       setIsDefined(true);
     }else{
       setIsDefined(false);

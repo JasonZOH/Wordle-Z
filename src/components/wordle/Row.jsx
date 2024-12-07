@@ -1,12 +1,20 @@
 import React from 'react'
 
-const Row = ({ guess, currentGuess }) => {
+const Row = ({ guess, currentGuess, col }) => {
+  
+  const generateAnimationDelay = () => {
+    return Array(col).fill("").map((_, index) => ({
+      animationDelay: `${index * 0.2}s`
+    }));
+  }
+
+  const styles = generateAnimationDelay();
 
   if(guess){
     return (
       <div className='row past'>
         {guess.map((letter, index) => (
-          <div key={index} className={letter.color}>{letter.key}</div>
+          <div key={index} className={letter.color} style={styles[index]}>{letter.key}</div>
         ))}
       </div>
     )
@@ -21,7 +29,7 @@ const Row = ({ guess, currentGuess }) => {
             <div key={index} className='fill'>{letter}</div>
           ))
         }
-        {[...Array(5 - letters.length)].map((_, i) => (
+        {[...Array(col - letters.length)].map((_, i) => (
           <div key={i}></div>
         ))}
       </div>
@@ -30,11 +38,9 @@ const Row = ({ guess, currentGuess }) => {
 
   return (
     <div className='row'>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      {[...Array(col)].map((_, i) => (
+        <div key={i}></div>
+      ))}
     </div>
   )
 }

@@ -28,7 +28,8 @@ const Wordle = () => {
       window.removeEventListener("keyup", handleKeyUp);
     }
 
-    if(turn > 5){
+    console.log(turn);
+    if(turn > line - 1){
       setTimeout(() => setShowModal(true), 2000);
       window.removeEventListener("keyup", handleKeyUp);
     }
@@ -69,7 +70,7 @@ const Wordle = () => {
         ) : 
         (
           <div>
-            <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}/>
+            <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} col={column}/>
             <Keypad usedKeys={usedKeys}/>
             {showModal && <Modal iscorrect={iscorrect} turn={turn} solution={solution}/>}
           </div>
